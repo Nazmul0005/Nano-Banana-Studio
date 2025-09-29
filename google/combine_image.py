@@ -9,17 +9,16 @@ load_dotenv()
 
 client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
 
-prompt = (
-    "make the woman dress yellow in the provided image",
+text_input = """Create a professional e-commerce fashion photo. Take the blue floral dress from the first image and let the woman from the second image wear it. Generate a realistic, full-body shot of the woman wearing the dress, with the lighting and shadows adjusted to match the outdoor environment."""
 
-)
+# Generate an image from a text prompt
 
-image =Image.open("D:/New folder/nano-banana-studio/google/image_20250929_140919.png")
-
+dress_image =Image.open("C:/Users/nazmu/Downloads/dress.png")
+model_image=Image.open("C:/Users/nazmu/Downloads/model.png")
 
 response = client.models.generate_content(
     model="gemini-2.5-flash-image-preview",
-    contents=[prompt, image],
+    contents=[dress_image, model_image, text_input],
 )
 print(response)
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")

@@ -9,17 +9,13 @@ load_dotenv()
 
 client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
 
-prompt = (
-    "make the woman dress yellow in the provided image",
+text_input = """Using the provided image of a living room, change only the blue sofa to be a vintage, brown leather chesterfield sofa. Keep the rest of the room, including the pillows on the sofa and the lighting, unchanged."""
 
-)
-
-image =Image.open("D:/New folder/nano-banana-studio/google/image_20250929_140919.png")
-
+image =Image.open("C:/Users/nazmu/Downloads/living_room.png")
 
 response = client.models.generate_content(
     model="gemini-2.5-flash-image-preview",
-    contents=[prompt, image],
+    contents=[text_input, image],
 )
 print(response)
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
