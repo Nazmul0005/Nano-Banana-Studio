@@ -14,6 +14,13 @@ A man murmurs, 'This must be it. That's the secret code.' The woman looks at him
 operation = client.models.generate_videos(
     model="veo-3.0-generate-001",
     prompt=prompt,
+    config=types.GenerateVideosConfig(
+        resolution="720p", # Changed from "640x360"
+        max_duration="8s",  # Changed from "15s"
+        video_count=1,
+        seed=42,
+        
+    )
 )
 
 # Poll the operation status until the video is ready.
